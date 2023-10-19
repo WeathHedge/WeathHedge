@@ -1,0 +1,9 @@
+.user-contracts-component{
+    border: 2px solid black;
+    border-radius: 1.5rem;
+}
+
+.user-contracts-details{
+    text-align: left;
+    padding: 1rem;
+}

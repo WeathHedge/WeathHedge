@@ -1,0 +1,38 @@
+.temp-derivative-main {
+  border: 2px solid black;
+  border-radius: 1rem;
+  text-align: left;
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.derivative-img-div {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  height: 150px;
+  overflow: hidden;
+}
+
+.derivative-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.derivative-details {
+  padding: 1rem;
+}
+
+.buy-derivative-btn {
+  display: grid;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background-color: #5cd200;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 0.6rem;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+}
