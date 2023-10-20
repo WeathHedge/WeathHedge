@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+
 contract WeatherDerivative {
     IERC20 private usdc; 
     address private platformOwner;
@@ -31,7 +32,7 @@ contract WeatherDerivative {
 
     mapping(uint256 => ContractBuyer[]) private BuyersOfContract;
     mapping(uint256 => WeatherDerivativeContract) private contracts;
-    // mapping(address=>userBoughtContracts[]) private 
+    mapping(address => uint256) private userBalances;
 
     constructor(address _usdcAddress) {
         platformOwner = msg.sender;
@@ -51,7 +52,7 @@ contract WeatherDerivative {
         string memory _image,
         string memory _description,
         string memory _location,
-        // uint256 _coverageStartDate,
+        uint256 _coverageStartDate,
         uint256 _coverageEndDate,
         uint256 _premiumAmount,
         uint256 _payoutAmount,
@@ -64,7 +65,7 @@ contract WeatherDerivative {
             _image,
             _description,
             _location,
-            block.timestamp,
+            _coverageStartDate,
             _coverageEndDate,
             _premiumAmount,
             _payoutAmount,
@@ -91,11 +92,12 @@ contract WeatherDerivative {
         require(msg.sender != platformOwner,"Owner of the Platform cannot buy the Contract.");
         require(contractId != currentContractId,"Contract does not exist!");
         WeatherDerivativeContract storage contractToPurchase = contracts[contractId];
-        require(!contractToPurchase.isClosed,"This contract is not active");
+        require(!contractToPurchase.isClosed,"Maximum User Limit is reached");
+        require(contractToPurchase.coverageEndDate <= block.timestamp, "Contract is no longer active!");
         require(BuyersOfContract[contractId].length < contractToPurchase.maxBuyers, "Maximum number of buyers reached");
-        // require(msg.value>=contractToPurchase.premiumAmount,"Insufficient Payment");
+        require(!hasPurchasedContract(msg.sender, contractId), "User has already purchased this contract.");
         require(usdc.allowance(msg.sender, address(this)) >= contractToPurchase.premiumAmount, "USDC allowance not set");
-         require(usdc.transferFrom(msg.sender, address(this), contractToPurchase.premiumAmount), "USDC transfer failed");
+        require(usdc.transferFrom(msg.sender, address(this), contractToPurchase.premiumAmount), "USDC transfer failed");
 
         // Buyer and Purchase TimeStamp
         ContractBuyer memory newBuyer = ContractBuyer({
@@ -113,6 +115,21 @@ contract WeatherDerivative {
 
     }
 
+    function hasPurchasedContract(address user, uint256 contractId) internal view returns (bool) {
+        for (uint i = 0; i < BuyersOfContract[contractId].length; i++) {
+            if (BuyersOfContract[contractId][i].Buyer == user) {
+                return true; // User has already purchased this contract
+            }
+        }
+        return false; // User has not purchased this contract
+    }
+
+
+
+
+    function getUsdcBalance() public view returns (uint256) {
+        return usdc.balanceOf(address(this));
+    }
 
     function monitorWeatherData() external{
 
@@ -126,24 +143,43 @@ contract WeatherDerivative {
     }
 
 
-    function distributePayout() public{
-
-
+    function distributePayout(uint256 contractId) public{
+      
     }
-
 
     function withdrawMoney() external payable{
+        uint256 userBalance = userBalances[msg.sender];
+        require(userBalance > 0, "No available balance to withdraw.");
+        userBalances[msg.sender]=0;
 
-
+        require(usdc.transfer(msg.sender,userBalance), "USDC transfer failed");
     }
 
 
-    function getTotalAmountInvestedByUser() external view returns(uint256){
 
-    }
+    function getContractBoughtByUser(address user) external view returns (WeatherDerivativeContract[] memory) {
+        WeatherDerivativeContract[] memory userContracts = new WeatherDerivativeContract[](allContractIds.length);
+        uint256 count = 0;
 
+        for (uint256 i = 0; i < allContractIds.length; i++) {
+            for (uint256 j = 0; j < BuyersOfContract[allContractIds[i]].length; j++) {
+                if (BuyersOfContract[allContractIds[i]][j].Buyer == user) {
+                    userContracts[count] = contracts[allContractIds[i]];
+                    count++;
+                }
+            }
+        }
 
-    function getListOfBoughtContracts() external view returns(uint256){
+        // Resize the array to the correct size
+        WeatherDerivativeContract[] memory result = new WeatherDerivativeContract[](count);
+        for (uint256 k = 0; k < count; k++) {
+            result[k] = userContracts[k];
+        }
+
+        return result;
     }
 
 }
+
+
+
