@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Chart, ArcElement } from "chart.js";
-import { Pie } from "react-chartjs-2";
-
-Chart.register(ArcElement);
+import Chart from "chart.js/auto";
+import { Pie, Bar } from "react-chartjs-2";
+import "../../styles/analysis/Analysis.css";
 
 function AnalysisPage() {
   const [location, setLocation] = useState("london");
+  const [date, setDate] = useState("2023-10-01");
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function AnalysisPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://api.weatherapi.com/v1/current.json?q=${location}&key=${process.env.REACT_APP_API_KEY}`
+          `http://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
         );
         const data = await response.json();
         setWeatherData(data);
@@ -26,43 +26,82 @@ function AnalysisPage() {
     fetchData();
   }, []);
 
-  const createPieData = () => {
+  const fetchWeatherData = async () => {
+    try {
+      const response = await fetch(
+        `http://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
+      );
+      const data = await response.json();
+      setWeatherData(data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  const createBarData = () => {
     if (!weatherData) return null;
 
-    const { current } = weatherData;
+    const { forecast } = weatherData;
+    const firstForecastDay = forecast.forecastday[0];
 
     return {
-      labels: ["Temperature", "Wind Speed", "Humidity", "Pressure"],
+      labels: ["Max Temp(C)", "Min Temp(C)", "Avg Temp(C)"],
       datasets: [
         {
           data: [
-            current.temp_c,
-            current.wind_kph,
-            current.humidity,
-            current.pressure_mb,
+            firstForecastDay.day.maxtemp_c,
+            firstForecastDay.day.mintemp_c,
+            firstForecastDay.day.avgtemp_c,
           ],
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#33FF99"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#33FF99"],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         },
       ],
+      options: {
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+          },
+          tooltip: {
+            enabled: true,
+          },
+        },
+      },
     };
   };
 
   return (
-    <div>
+    <div className="py-4">
       <div>
-        <div>Enter the location</div>
-        <div>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => {
-              setLocation(e.target.value);
-            }}
-          />
+        <div className="py-2 analysis-title">Enter the location and date</div>
+        <div className="py-2">
+          <div className="pb-4">
+            <input
+              type="text"
+              className="mx-2"
+              value={location}
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
+            />
+            <input
+              type="date"
+              className="mx-2"
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <button onClick={fetchWeatherData} className="btn btn-primary"> Click here</button>
+          </div>
         </div>
       </div>
-      <div className="graph-component">{weatherData && <Pie data={createPieData()} className="pie-graph" />}</div>
+      <div className="graph-component pt-5 col-7 mx-auto">
+        {weatherData && <Bar data={createBarData()} />}
+      </div>
     </div>
   );
 }

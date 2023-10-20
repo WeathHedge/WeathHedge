@@ -78,7 +78,7 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: black;
+  background: white;
   border-radius: 1px;
   opacity: 1;
   left: 0;
@@ -140,7 +140,7 @@
 
 .navbar-toggler.collapsed .toggler-icon {
   /* background: linear-gradient( 263deg, rgba(252,74,74,1) 0%, rgba(0,212,255,1) 100% ); */
-  background: black;
+  background: white;
 }
 
 /* .navbar-image{
@@ -154,7 +154,6 @@
 }
 
 .navbar-content:hover {
-  background: linear-gradient(to right, #4250ff, #6a79ff);
   border-radius: 0.5rem;
   color: white !important;
 }
@@ -178,7 +177,6 @@
 }
 
 .navbar-content.active {
-  background: linear-gradient(to right, #4250ff, #6a79ff);
   border-radius: 0.5rem !important;
   color: #ffffff !important;
 
