@@ -93,7 +93,7 @@ contract WeatherDerivative {
         require(contractId != currentContractId,"Contract does not exist!");
         WeatherDerivativeContract storage contractToPurchase = contracts[contractId];
         require(!contractToPurchase.isClosed,"Maximum User Limit is reached");
-        // require(contractToPurchase.coverageEndDate <= block.timestamp, "Contract is no longer active!");
+        require(contractToPurchase.coverageEndDate <= block.timestamp, "Contract is no longer active!");
         require(BuyersOfContract[contractId].length < contractToPurchase.maxBuyers, "Maximum number of buyers reached");
         require(!hasPurchasedContract(msg.sender, contractId), "User has already purchased this contract.");
         require(usdc.allowance(msg.sender, address(this)) >= contractToPurchase.premiumAmount, "USDC allowance not set");
