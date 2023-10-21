@@ -29,7 +29,7 @@ function AnalysisPage() {
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
+        `https://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
       );
       const data = await response.json();
       setWeatherData(data);
@@ -95,7 +95,10 @@ function AnalysisPage() {
             />
           </div>
           <div>
-            <button onClick={fetchWeatherData} className="btn btn-primary"> Click here</button>
+            <button onClick={fetchWeatherData} className="btn btn-primary">
+              {" "}
+              Click here
+            </button>
           </div>
         </div>
       </div>
