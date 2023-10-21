@@ -36,3 +36,9 @@
   bottom: 0;
   color: #fff;
 }
+
+.modal-form-data {
+  border: 1px solid grey;
+  padding: 0.3rem 0.4rem;
+  border-radius: 0.3rem;
+}
