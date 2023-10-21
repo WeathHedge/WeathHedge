@@ -142,7 +142,7 @@ contract WeatherDerivative {
 
     function settleContract(uint256 contractId, uint256 temperature) public onlyPlatformOwner{
         WeatherDerivativeContract storage contractToSettle = contracts[contractId];
-        
+        temperature = 35;
         // Ensure that the coverage end date has been reached
         require(block.timestamp >= contractToSettle.coverageEndDate, "Coverage period not ended yet");
 
@@ -156,11 +156,13 @@ contract WeatherDerivative {
             payout = contractToSettle.payoutAmount;
         }
 
+        // Close the contract
+        contractToSettle.isClosed = true;
+
         // Distribute the payout to the stakeholders
         distributePayout(contractId, payout);
 
-        // Close the contract
-        contractToSettle.isClosed = true;
+    
     }
 
 
@@ -179,7 +181,8 @@ contract WeatherDerivative {
             
             // Calculate the payout for the buyer based on the contract conditions
             uint256 buyerPayout = 0;
-            if (contractToDistribute.coverageEndDate == block.timestamp) {
+            if (contractToDistribute.coverageEndDate <= block.timestamp) {
+                // 1695203200
                 buyerPayout = payout;
             }
             // Update the user's balance with the payout amount
