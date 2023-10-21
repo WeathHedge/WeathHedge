@@ -140,7 +140,7 @@ contract WeatherDerivative {
     }
 
 
-    function settleContract(uint256 contractId, uint256 temperature) public {
+    function settleContract(uint256 contractId, uint256 temperature) public onlyPlatformOwner{
         WeatherDerivativeContract storage contractToSettle = contracts[contractId];
         
         // Ensure that the coverage end date has been reached
