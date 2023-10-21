@@ -14,7 +14,7 @@ function AnalysisPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
+          `https://api.weatherapi.com/v1/history.json?q=${location}&key=${process.env.REACT_APP_API_KEY}&dt=${date}`
         );
         const data = await response.json();
         setWeatherData(data);
