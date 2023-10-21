@@ -3,7 +3,6 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-
 contract WeatherDerivative {
     IERC20 private usdc; 
     address private platformOwner;
@@ -16,10 +15,10 @@ contract WeatherDerivative {
         string location;
         uint256 coverageStartDate;
         uint256 coverageEndDate;
+        uint256 strikeValue;
         uint256 premiumAmount;
         uint256 payoutAmount;
         uint256 maxBuyers;
-        string dataSource;
         string termsAndConditions;
         bool isClosed;
         uint256 contractId;
@@ -54,10 +53,10 @@ contract WeatherDerivative {
         string memory _location,
         uint256 _coverageStartDate,
         uint256 _coverageEndDate,
+        uint256 _strikeValue,
         uint256 _premiumAmount,
         uint256 _payoutAmount,
         uint256 _maxBuyers,
-        string memory _dataSource,
         string memory _termsAndConditions
     ) public onlyPlatformOwner {
         contracts[currentContractId] = WeatherDerivativeContract(
@@ -67,10 +66,10 @@ contract WeatherDerivative {
             _location,
             _coverageStartDate,
             _coverageEndDate,
+            _strikeValue,
             _premiumAmount,
             _payoutAmount,
             _maxBuyers,
-            _dataSource,
             _termsAndConditions,
             false,
             currentContractId
@@ -93,7 +92,7 @@ contract WeatherDerivative {
         require(contractId != currentContractId,"Contract does not exist!");
         WeatherDerivativeContract storage contractToPurchase = contracts[contractId];
         require(!contractToPurchase.isClosed,"Maximum User Limit is reached");
-        require(contractToPurchase.coverageEndDate <= block.timestamp, "Contract is no longer active!");
+        // require(contractToPurchase.coverageEndDate <= block.timestamp, "Contract is no longer active!");
         require(BuyersOfContract[contractId].length < contractToPurchase.maxBuyers, "Maximum number of buyers reached");
         require(!hasPurchasedContract(msg.sender, contractId), "User has already purchased this contract.");
         require(usdc.allowance(msg.sender, address(this)) >= contractToPurchase.premiumAmount, "USDC allowance not set");
@@ -106,10 +105,7 @@ contract WeatherDerivative {
         });
 
         BuyersOfContract[contractId].push(newBuyer);
-         // Close the contract if the maximum number of buyers is reached
-        if (BuyersOfContract[contractId].length >= contractToPurchase.maxBuyers) {
-            contractToPurchase.isClosed = true;
-        }
+     
 
         emit ContractPurchased(contractId, msg.sender, block.timestamp);
 
@@ -131,21 +127,66 @@ contract WeatherDerivative {
         return usdc.balanceOf(address(this));
     }
 
-    function monitorWeatherData() external{
+    function monitorWeatherData(uint256 temperature) internal pure returns (uint256 hddValue, uint256 cddValue) {
+        if (temperature < 65) {
+            hddValue = 65 - temperature;
+            cddValue = 0;
+        } else {
+            hddValue = 0;
+            cddValue = temperature - 65;
+        }
 
-
+        return (hddValue, cddValue);
     }
 
 
-    function calculatePayout() internal{
+    function settleContract(uint256 contractId, uint256 temperature) public {
+        WeatherDerivativeContract storage contractToSettle = contracts[contractId];
+        
+        // Ensure that the coverage end date has been reached
+        require(block.timestamp >= contractToSettle.coverageEndDate, "Coverage period not ended yet");
 
+        // Ensure that the contract is open
+        require(!contractToSettle.isClosed, "Contract is already closed");
+        // Calculate HDD value based on the monitored temperature
+        (uint256 hddValue, ) = monitorWeatherData(temperature);
+        // Calculate the payout based on the HDD value and the strike value
+        uint256 payout = 0;
+        if (hddValue >= contractToSettle.strikeValue) {
+            payout = contractToSettle.payoutAmount;
+        }
 
+        // Distribute the payout to the stakeholders
+        distributePayout(contractId, payout);
+
+        // Close the contract
+        contractToSettle.isClosed = true;
     }
 
 
-    function distributePayout(uint256 contractId) public{
-      
+
+    function distributePayout(uint256 contractId, uint256 payout) public {
+        WeatherDerivativeContract storage contractToDistribute = contracts[contractId];
+        
+        // Ensure that the contract is closed
+        require(contractToDistribute.isClosed, "Contract is not closed yet");
+
+        // Get the list of buyers for the contract
+        ContractBuyer[] storage buyers = BuyersOfContract[contractId];
+        
+        for (uint256 i = 0; i < buyers.length; i++) {
+            address buyer = buyers[i].Buyer;
+            
+            // Calculate the payout for the buyer based on the contract conditions
+            uint256 buyerPayout = 0;
+            if (contractToDistribute.coverageEndDate == block.timestamp) {
+                buyerPayout = payout;
+            }
+            // Update the user's balance with the payout amount
+            userBalances[buyer] += buyerPayout;
+        }
     }
+
 
     function withdrawMoney() external payable{
         uint256 userBalance = userBalances[msg.sender];
@@ -180,6 +221,3 @@ contract WeatherDerivative {
     }
 
 }
-
-
-
