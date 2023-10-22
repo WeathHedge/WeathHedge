@@ -108,6 +108,9 @@ function ProfilePage() {
                   <div className="user-contracts-desc">
                     Contract description: {item.description}
                   </div>
+                  <div className="user-contracts-title">
+                    Location: {item.location}
+                  </div>
                   <div className="user-contracts-badge">
                     Coverage Start Date:{" "}
                     {parseInt(item.coverageStartDate._hex, 16)}
@@ -116,22 +119,16 @@ function ProfilePage() {
                     Coverage End Date: {parseInt(item.coverageEndDate._hex, 16)}
                   </div>
                   <div className="user-contracts-title">
-                    Premuim Amount: {parseInt(item.premiumAmount._hex, 16)}
+                    Strike Value: {parseInt(item.strikeValue._hex, 16)}
                   </div>
                   <div className="user-contracts-title">
-                    Location: {item.location}
+                    Premuim Amount: {parseInt(item.premiumAmount._hex, 16)}
                   </div>
                   <div className="user-contracts-title">
                     Payout Amount: {parseInt(item.payoutAmount._hex, 16)}
                   </div>
                   <div className="user-contracts-title">
                     Maximum Buyers: {parseInt(item.maxBuyers._hex, 16)}
-                  </div>
-                  <div className="user-contracts-title">
-                    Data Source: {item.dataSource}
-                  </div>
-                  <div className="user-contracts-title">
-                    Terms and conditions: {item.termsAndConditions}
                   </div>
                 </div>
               </div>

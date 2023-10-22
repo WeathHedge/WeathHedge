@@ -1,320 +1,349 @@
 [
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_usdcAddress",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "contractId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "buyer",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "purchaseTimestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "ContractPurchased",
-    "type": "event"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_image",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_description",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_location",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_coverageStartDate",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_coverageEndDate",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_premiumAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_payoutAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_maxBuyers",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_dataSource",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_termsAndConditions",
-        "type": "string"
-      }
-    ],
-    "name": "createContract",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "contractId",
-        "type": "uint256"
-      }
-    ],
-    "name": "distributePayout",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "monitorWeatherData",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "contractId",
-        "type": "uint256"
-      }
-    ],
-    "name": "purchaseContract",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "withdrawMoney",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getAllContracts",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "location",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "coverageStartDate",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "coverageEndDate",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "premiumAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "payoutAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "maxBuyers",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "dataSource",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "termsAndConditions",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "isClosed",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "contractId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct WeatherDerivative.WeatherDerivativeContract[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      }
-    ],
-    "name": "getContractBoughtByUser",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "location",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "coverageStartDate",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "coverageEndDate",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "premiumAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "payoutAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "maxBuyers",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "dataSource",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "termsAndConditions",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "isClosed",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "contractId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct WeatherDerivative.WeatherDerivativeContract[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getUsdcBalance",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_usdcAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "contractId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "purchaseTimestamp",
+				"type": "uint256"
+			}
+		],
+		"name": "ContractPurchased",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_image",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_location",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_coverageStartDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_coverageEndDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_strikeValue",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_premiumAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_payoutAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_maxBuyers",
+				"type": "uint256"
+			}
+		],
+		"name": "createContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "contractId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "payout",
+				"type": "uint256"
+			}
+		],
+		"name": "distributePayout",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "temperature",
+				"type": "uint256"
+			}
+		],
+		"name": "monitorWeatherData",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "contractId",
+				"type": "uint256"
+			}
+		],
+		"name": "purchaseContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "contractId",
+				"type": "uint256"
+			}
+		],
+		"name": "settleContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawMoney",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllContracts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coverageStartDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coverageEndDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "strikeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "premiumAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payoutAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxBuyers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hddValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cddValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isClosed",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "contractId",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct WeatherDerivative.WeatherDerivativeContract[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getContractBoughtByUser",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coverageStartDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coverageEndDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "strikeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "premiumAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payoutAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxBuyers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hddValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cddValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isClosed",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "contractId",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct WeatherDerivative.WeatherDerivativeContract[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUsdcBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ]
