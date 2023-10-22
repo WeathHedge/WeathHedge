@@ -82,7 +82,8 @@ function TempDerivative() {
           allDerivatives.map((item, key) => (
             <div className="temp-derivative-main col-4" index={key}>
               <div className="derivative-img-div">
-                <img src={`https://ipfs.io/ipfs/${item.image}`} className="derivative-img" />
+                {/* <img src={`https://ipfs.io/ipfs/${item.image}`} className="derivative-img" /> */}
+                <img src={temp} className="derivative-img" />
               </div>
               <div className="derivative-details">
                 <div>Contract Name: {item.name}</div>

@@ -1,15 +1,15 @@
 import React from "react";
 import "../../styles/home/Sponsor.css";
-import scroll from "../../assets/sponsors/scroll.png"
+import polygon from "../../assets/sponsors/polygon.png"
 import chainlink from "../../assets/sponsors/chainlink.png"
 function Sponsor() {
   const sponsors = [
     {
       id: 1,
-      name: "Scroll",
-      image_url:scroll,
+      name: "Polygon",
+      image_url:polygon,
       description:
-        'Scroll designed to address some of the scalability and cost issues associated with the Ethereum network while preserving the key characteristics of Ethereum',
+        'Polygon designed to address some of the scalability and performance limitations of the Ethereum blockchain, aiming to provide a more efficient and cost-effective platform for decentralized applications (DApps)',
       //   image_url: push,
     },
     {

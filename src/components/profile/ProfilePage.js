@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { derivativeInstance } from "../Contract";
 import { useAccount } from "wagmi";
 import { ClipLoader } from "react-spinners";
-
+import temp from "../../assets/temp.jpg";
 function ProfilePage() {
   const [allUserContracts, setAllUserContracts] = useState([]);
   const { address } = useAccount();
@@ -55,12 +55,19 @@ function ProfilePage() {
     }
   };
 
+  function hexToTimestamp(hex) {
+    const unixTimestamp = parseInt(hex, 16);
+    const date = new Date(unixTimestamp * 1000);
+    const localDate = date.toLocaleString("en-US");
+    return localDate;
+  }
+
   return (
     <div>
       {/* Withdraw */}
       <div className="d-flex py-4 col-11 mx-auto align-items-center">
         <div className="d-flex col-6 align-items-center">
-          <div className="">Withdraw Stake:</div>
+          <div className=""> <h2>Withdraw Amount:</h2></div>
           <div className="px-3">
             <button className="btn btn-success" onClick={withdrawAmount}>
               {" "}
@@ -68,17 +75,26 @@ function ProfilePage() {
             </button>
           </div>
         </div>
-        <div className="d-flex col-6">
+        <div className="d-flex col-6 align-items-center">
+          <div className=""> <h2>Stake Amount to Vault:</h2></div>
+          <div className="px-3">
+            <button className="btn btn-success" >
+              {" "}
+              Stake Here
+            </button>
+          </div>
+        </div>
+        {/* <div className="d-flex col-6">
           <div className="d-flex">Total amount spent :</div>
           <div className="px-3">
             <input type="text" />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Contracts bought */}
       <div>
-        <div className="d-flex col-11 mx-auto py-2">Contracts Bought:</div>
+        <div className="d-flex col-11 mx-auto py-2"> <h2>Contracts Bought:</h2></div>
 
         <div className="row col-11 px-0 user-contracts-main mt-4 py-3 px-sm-3 justify-content-around">
           <div className="d-flex justify-content-center">
@@ -94,11 +110,12 @@ function ProfilePage() {
                 className="col-xxl-3 col-md-4 col-sm-7 col-11 mx-1 mb-5 user-contracts-component"
                 index={key}
               >
-                <div className="user-contracts-img-div">
+                <div className="derivative-img-div">
                   <img
                     // src={`https://gateway.lighthouse.storage/ipfs/${item.uploadImage}`}
-                    src={item.image}
-                    className="user-contracts-img"
+                    // src={item.image}
+                    src={temp}
+                    className="derivative-img"
                   ></img>
                 </div>
                 <div className="user-contracts-details">
@@ -113,19 +130,19 @@ function ProfilePage() {
                   </div>
                   <div className="user-contracts-badge">
                     Coverage Start Date:{" "}
-                    {parseInt(item.coverageStartDate._hex, 16)}
+                    {hexToTimestamp(item.coverageStartDate._hex)}
                   </div>
                   <div className="user-contracts-btn">
-                    Coverage End Date: {parseInt(item.coverageEndDate._hex, 16)}
+                    Coverage End Date: {hexToTimestamp(item.coverageEndDate._hex)}
                   </div>
                   <div className="user-contracts-title">
-                    Strike Value: {parseInt(item.strikeValue._hex, 16)}
+                    Strike Value: {parseInt(item.strikeValue._hex, 16)} USDC
                   </div>
                   <div className="user-contracts-title">
-                    Premuim Amount: {parseInt(item.premiumAmount._hex, 16)}
+                    Premuim Amount: {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
                   </div>
                   <div className="user-contracts-title">
-                    Payout Amount: {parseInt(item.payoutAmount._hex, 16)}
+                    Payout Amount: {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
                   </div>
                   <div className="user-contracts-title">
                     Maximum Buyers: {parseInt(item.maxBuyers._hex, 16)}
