@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract WeatherDerivative {
     IERC20 private usdc; 
     address private platformOwner;
+    uint256[] private openContracts;
     uint256 private currentContractId;
     uint256[] private allContractIds;
     struct WeatherDerivativeContract {
@@ -19,9 +20,11 @@ contract WeatherDerivative {
         uint256 premiumAmount;
         uint256 payoutAmount;
         uint256 maxBuyers;
-        string termsAndConditions;
+        uint256 hddValue; 
+        uint256 cddValue; 
         bool isClosed;
         uint256 contractId;
+        
     }
 
     struct ContractBuyer{
@@ -56,8 +59,7 @@ contract WeatherDerivative {
         uint256 _strikeValue,
         uint256 _premiumAmount,
         uint256 _payoutAmount,
-        uint256 _maxBuyers,
-        string memory _termsAndConditions
+        uint256 _maxBuyers
     ) public onlyPlatformOwner {
         contracts[currentContractId] = WeatherDerivativeContract(
             _name,
@@ -70,12 +72,15 @@ contract WeatherDerivative {
             _premiumAmount,
             _payoutAmount,
             _maxBuyers,
-            _termsAndConditions,
+            0,
+            0,
             false,
             currentContractId
         );
 
         allContractIds.push(currentContractId);
+        // Add the new contract to the list of open contracts
+        openContracts.push(currentContractId);
         currentContractId++;
     }
 
@@ -127,38 +132,49 @@ contract WeatherDerivative {
         return usdc.balanceOf(address(this));
     }
 
-    function monitorWeatherData(uint256 temperature) internal pure returns (uint256 hddValue, uint256 cddValue) {
-        if (temperature < 65) {
-            hddValue = 65 - temperature;
-            cddValue = 0;
-        } else {
-            hddValue = 0;
-            cddValue = temperature - 65;
-        }
+    function monitorWeatherData(uint256 temperature) public {
 
-        return (hddValue, cddValue);
+        for(uint256 i=0; i<openContracts.length; i++){
+            uint256 contractId = openContracts[i];
+            WeatherDerivativeContract storage contractToMonitor = contracts[contractId];
+
+            if (temperature < 65) {
+                contractToMonitor.hddValue += 65 - temperature;
+                contractToMonitor.cddValue = 0;
+            } else {
+                contractToMonitor.hddValue = 0;
+                contractToMonitor.cddValue += temperature - 65;
+            }
+        }
     }
 
 
-    function settleContract(uint256 contractId, uint256 temperature) public onlyPlatformOwner{
+    function settleContract(uint256 contractId) public onlyPlatformOwner{
         WeatherDerivativeContract storage contractToSettle = contracts[contractId];
-        temperature = 35;
         // Ensure that the coverage end date has been reached
         require(block.timestamp >= contractToSettle.coverageEndDate, "Coverage period not ended yet");
 
         // Ensure that the contract is open
         require(!contractToSettle.isClosed, "Contract is already closed");
-        // Calculate HDD value based on the monitored temperature
-        (uint256 hddValue, ) = monitorWeatherData(temperature);
+
+        
         // Calculate the payout based on the HDD value and the strike value
         uint256 payout = 0;
-        if (hddValue >= contractToSettle.strikeValue) {
+        if (contractToSettle.hddValue >= contractToSettle.strikeValue) {
             payout = contractToSettle.payoutAmount;
         }
 
         // Close the contract
         contractToSettle.isClosed = true;
 
+        // Remove the closed contract from the list of open contracts
+        for (uint256 i = 0; i < openContracts.length; i++) {
+            if (openContracts[i] == contractId) {
+                openContracts[i] = openContracts[openContracts.length - 1];
+                openContracts.pop();
+                break;
+            }
+        }
         // Distribute the payout to the stakeholders
         distributePayout(contractId, payout);
 
