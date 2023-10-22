@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import weathHedgeABI from "../contracts/artifacts/WeathHedgeABI.json";
 
-export const DERIVATIVE_ADDRESS = "0x4bd75D247926fa13b392EC9C4cB18C7F73d3f193";
+export const DERIVATIVE_ADDRESS = "0x5735a85CF471aaEE84A281fecc206E77A8e20D31";
 
 export const derivativeInstance = async () => {
   const { ethereum } = window;
