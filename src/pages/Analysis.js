@@ -1,12 +1,15 @@
-import React from 'react'
-import AnalysisPage from '../components/analysis/AnalysisPage'
+import React from "react";
+import AnalysisPage from "../components/analysis/AnalysisPage";
+import Tth from "../components/analysis/page";
+
 
 function Analysis() {
   return (
     <div>
-        <AnalysisPage/>
+      <Tth />
+      {/* <AnalysisPage /> */}
     </div>
-  )
+  );
 }
 
-export default Analysis
+export default Analysis;

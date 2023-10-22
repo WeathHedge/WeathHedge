@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
 import { Pie, Bar } from "react-chartjs-2";
 import "../../styles/analysis/Analysis.css";
+import { ClipLoader } from "react-spinners";
 
 function AnalysisPage() {
   const [location, setLocation] = useState("london");
   const [date, setDate] = useState("2023-10-01");
   const [weatherData, setWeatherData] = useState(null);
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
     // Fetch data from the API
@@ -18,6 +20,7 @@ function AnalysisPage() {
         );
         const data = await response.json();
         setWeatherData(data);
+        setIsPageLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -33,6 +36,7 @@ function AnalysisPage() {
       );
       const data = await response.json();
       setWeatherData(data);
+      setIsPageLoading(false);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -45,7 +49,7 @@ function AnalysisPage() {
     const firstForecastDay = forecast.forecastday[0];
 
     return {
-      labels: ["Max Temp(C)", "Min Temp(C)", "Avg Temp(C)"],
+      labels: ["Max Temp (°C)", "Min Temp (°C)", "Avg Temp (°C)"],
       datasets: [
         {
           data: [
@@ -103,7 +107,13 @@ function AnalysisPage() {
         </div>
       </div>
       <div className="graph-component pt-5 col-7 mx-auto">
-        {weatherData && <Bar data={createBarData()} />}
+        {isPageLoading ? (
+          <div>
+            <ClipLoader color="#000" />
+          </div>
+        ) : (
+          weatherData && <Bar data={createBarData()} />
+        )}
       </div>
     </div>
   );

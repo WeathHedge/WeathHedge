@@ -3,10 +3,12 @@ import "../../styles/profile/Profile.css";
 import { ethers } from "ethers";
 import { derivativeInstance } from "../Contract";
 import { useAccount } from "wagmi";
+import { ClipLoader } from "react-spinners";
 
 function ProfilePage() {
   const [allUserContracts, setAllUserContracts] = useState([]);
   const { address } = useAccount();
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   const allDerivativeData = async () => {
     try {
@@ -30,7 +32,7 @@ function ProfilePage() {
   useEffect(() => {
     async function fetchDerivativeContracts() {
       await allDerivativeData();
-      // setIsPageLoading(false);
+      setIsPageLoading(false);
     }
     // console.log("hello");
     fetchDerivativeContracts();
@@ -82,7 +84,11 @@ function ProfilePage() {
           <div className="d-flex justify-content-center">
             {/* <ClipLoader color="#4250ff" /> */}
           </div>
-          {allUserContracts.length > 0 ? (
+          {isPageLoading ? (
+            <div>
+              <ClipLoader color="#000" />
+            </div>
+          ) : allUserContracts.length > 0 ? (
             allUserContracts.map((item, key) => (
               <div
                 className="col-xxl-3 col-md-4 col-sm-7 col-11 mx-1 mb-5 user-contracts-component"

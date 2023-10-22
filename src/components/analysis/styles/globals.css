@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 180, 80, 80;
+  --icon-blue: #0070f3;
+}
+
+/*@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}*/
+
+/* body {
+  height: 100%;
+  overflow: hidden;
+  color: rgb(var(--foreground-rgb));
+}
+
+h1 {
+  font-size: large;
+  font-weight: 700;
+} */

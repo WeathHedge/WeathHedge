@@ -4,10 +4,12 @@ import "../../styles/derivative/TempDerivative.css";
 import temp from "../../assets/temp.jpg";
 import { derivativeInstance } from "../Contract";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 function TempDerivative() {
   const [allDerivatives, setAllDerivatives] = useState([]);
   const navigate = useNavigate();
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   const allDerivativeData = async () => {
     try {
@@ -31,7 +33,7 @@ function TempDerivative() {
   useEffect(() => {
     async function fetchDerivativeContracts() {
       await allDerivativeData();
-      // setIsPageLoading(false);
+      setIsPageLoading(false);
     }
     // console.log("hello");
     fetchDerivativeContracts();
@@ -65,7 +67,11 @@ function TempDerivative() {
   return (
     <div>
       <div className="d-flex py-5 px-5 justify-content-around">
-        {allDerivatives.length > 0 ? (
+        {isPageLoading ? (
+          <div>
+            <ClipLoader color="#000" />
+          </div>
+        ) : allDerivatives.length > 0 ? (
           allDerivatives.map((item, key) => (
             <div className="temp-derivative-main col-4" index={key}>
               <div className="derivative-img-div">

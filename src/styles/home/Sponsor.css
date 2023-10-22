@@ -1,0 +1,64 @@
+.sponsor-section {
+  text-align: center;
+}
+
+.sponsor-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0rem;
+}
+
+.powered-by-heading {
+  font-size: 2rem;
+}
+
+.sponsor-name {
+  font-size: 1.5rem;
+}
+
+.LandingSponsorDesc {
+  font-weight: 400;
+}
+
+.sponsor-card {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem;
+  margin: 1.4rem;
+  border-radius: 8px;
+  width: 300px;
+  text-overflow: ellipsis;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add box-shadow for the sponsor cards */
+}
+
+@media (max-width: 768px) {
+  .sponsor-card {
+    width: calc(50% - 20px);
+  }
+
+  .sponsor-name {
+    font-size: 1rem !important;
+  }
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.sponsor-card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sponsor-section {
+  text-align: center;
+  font-size: 100%;
+}
+
+.sponsor-section h1 {
+  font-weight: bold;
+}
