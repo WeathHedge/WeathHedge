@@ -1,34 +1,30 @@
 import React from "react";
 import "../../styles/home/Sponsor.css";
-
+import scroll from "../../assets/sponsors/scroll.png"
+import chainlink from "../../assets/sponsors/chainlink.png"
 function Sponsor() {
   const sponsors = [
     {
       id: 1,
-      name: "Push Protocol",
+      name: "Scroll",
+      image_url:scroll,
       description:
-        '"Push Protocol is a web3 communication network, enabling cross-chain notifications and messaging for dapps, wallets, and services.',
+        'Scroll designed to address some of the scalability and cost issues associated with the Ethereum network while preserving the key characteristics of Ethereum',
       //   image_url: push,
     },
     {
       id: 2,
-      name: "Bacalhau",
+      name: "Chainlink",
+      image_url:chainlink,
       description:
-        '"Bacalhau is a platform for fast, cost-efficient, and secure computation that enables users to run compute jobs where the data is generated and stored.',
+        'Chainlink is a decentralized oracle network and service that provides tamper-proof, reliable data for smart contracts on various blockchain platforms, most notably Ethereum.',
       //   image_url: bacallhau,
-    },
-    {
-      id: 3,
-      name: "Tableland",
-      description:
-        "Tableland is an open source, permissionless cloud database built on SQLite. Read and write tamperproof data from apps, data pipelines, or EVM smart contracts.",
-      //   image_url: ens,
-    },
+    }
   ];
 
   return (
     <div className="sponsor-section">
-      <h1 className="powered-by-heading"> Powered By </h1>
+       <div className=" home-title my-auto" style={{paddingTop:"5rem", paddingBottom:"2.5rem"}}> <span style={{fontSize:"2rem", fontWeight:"700", backgroundColor:"black", width:"70%", borderRadius:"2.5rem",padding:"0.8rem 5rem "}}><span style={{color:"white"}}>Powered By</span></span></div>
       <div className="sponsor-cards">
         {sponsors.map((sponsor) => (
           <div
@@ -40,10 +36,10 @@ function Sponsor() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="icon-container">
-              {/* <img src={sponsor.image_url} alt={sponsor.name} /> */}
+              <img src={sponsor.image_url} alt={sponsor.name} />
             </div>
 
-            <h2 className="sponsor-name">{sponsor.name}</h2>
+            <h1 className="sponsor-name">{sponsor.name}</h1>
 
             <p className="LandingSponsorDesc">{sponsor.description}</p>
           </div>
