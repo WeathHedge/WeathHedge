@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# WeathHedge - Enables users to trade weather derivatives 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Checkout WeathHedge Platform: https://weathhedge.vercel.app
 
-## Available Scripts
+## About WeathHedge
 
-In the project directory, you can run:
+WeathHedge redefines weather derivatives trading by providing a user-friendly, decentralized platform that enables users to seamlessly engage in risk management. By harnessing the transparency and security of blockchain technology, our platform empowers businesses and individuals to hedge against weather-related financial risks with precision, all while eliminating the complexities of traditional financial markets.
 
-### `npm start`
+## How WeathHedge is made?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+WeathHedge is meticulously crafted by integrating cutting-edge technologies, including blockchain for decentralization, smart contracts for automated execution, and oracles for real-time weather data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+We partnered with reputable weather data providers and auditors to ensure reliability and security. Notably, we developed an intuitive contract creation wizard to simplify the user experience.
 
-### `npm test`
+The seamless integration of these elements culminated in a user-centric, secure, and transparent platform that empowers users to confidently trade weather derivatives and manage risk.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
