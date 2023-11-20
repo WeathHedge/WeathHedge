@@ -4,12 +4,28 @@ import "../../styles/derivative/TempDerivative.css";
 import temp from "../../assets/temp.jpg";
 import { derivativeInstance } from "../Contract";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
+import {
+  ClipLoader,
+  MoonLoader,
+  PropagateLoader,
+  SyncLoader,
+} from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function TempDerivative() {
   const [allDerivatives, setAllDerivatives] = useState([]);
   const navigate = useNavigate();
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [btnloading, setbtnloading] = useState([]);
+  const [showText, setShowText] = useState(false);
+
+  const handleMouseEnter1 = () => {
+    setShowText(true);
+  };
+  const handleMouseLeave1 = () => {
+    setShowText(false);
+  };
 
   const allDerivativeData = async () => {
     try {
@@ -39,8 +55,24 @@ function TempDerivative() {
     fetchDerivativeContracts();
   }, []);
 
-  const buyContract = async (id) => {
+  const buyContract = async (id, index) => {
     try {
+      toast.info("Process is in Progress", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setbtnloading((prevStatus) => {
+        const newStatus = [...prevStatus];
+        newStatus[index] = true;
+        return newStatus;
+      });
+
       console.log("Contract Id:  ", id);
       const contract_id = parseInt(id._hex, 16);
       const { ethereum } = window;
@@ -55,11 +87,30 @@ function TempDerivative() {
         const tx = await con.purchaseContract(contract_id);
         console.log("tx: ", tx);
         await tx.wait();
-        // setbtnloading(false);
+        setbtnloading((prevStatus) => {
+          const newStatus = [...prevStatus];
+          newStatus[index] = false;
+          return newStatus;
+        });
         navigate("/profile");
         window.location.reload();
       }
     } catch (error) {
+      setbtnloading((prevStatus) => {
+        const newStatus = [...prevStatus];
+        newStatus[index] = false;
+        return newStatus;
+      });
+      toast.info(error.reason, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       console.log(error.reason);
     }
   };
@@ -73,152 +124,103 @@ function TempDerivative() {
 
   return (
     <div>
-      <div className="d-flex py-5 px-5 justify-content-around">
+      <div className="row col-12 d-flex py-5 px-5 justify-content-around">
         {isPageLoading ? (
           <div>
             <ClipLoader color="#000" />
           </div>
         ) : allDerivatives.length > 0 ? (
           allDerivatives.map((item, key) => (
-            <div className="temp-derivative-main col-4" index={key}>
+            <div
+              className="temp-derivative-main col-md-5 col-sm-7 col-11 mb-5"
+              index={key}
+            >
               <div className="derivative-img-div">
-                {/* <img src={`https://ipfs.io/ipfs/${item.image}`} className="derivative-img" /> */}
-                <img src={temp} className="derivative-img" />
+                <img
+                  src={`https://ipfs.io/ipfs/${item.image}`}
+                  className="derivative-img"
+                />
+                {/* <a href="https://ipfs.io/ipfs/${item.image}">Click here</a> */}
               </div>
               <div className="derivative-details">
-                <div>Contract Name: {item.name}</div>
-                <div>Contract description: {item.description}</div>
-                <div>
-                  Coverage Start Date:{" "}
-                  {hexToTimestamp(item.coverageStartDate._hex)}
+                <div className="py-1">
+                  <div className="derivative-title">
+                    Contract Name &nbsp;&nbsp;{" "}
+                    <i
+                      className="fas fa-info-circle head-info"
+                      onMouseEnter={handleMouseEnter1}
+                      onMouseLeave={handleMouseLeave1}
+                    >
+                      {" "}
+                    </i>
+                    {showText && (
+                      <div className="text-center d-flex justify-content-center align-items-center mb-3 mb-sm-4 buy-sub-text">
+                        Contract name.{" "}
+                      </div>
+                    )}
+                  </div>
+                  <div>{item.name}</div>
                 </div>
-                <div>
-                  Coverage End Date: {hexToTimestamp(item.coverageEndDate._hex)}
+
+                <div className="py-1">
+                  <div className="derivative-title">Contract description </div>
+                  <div>{item.description}</div>
                 </div>
-                <div>
-                  Premium Amount: {parseInt(item.premiumAmount._hex, 16)/ 1000000} USDC
+                <div className="py-1">
+                  <div className="derivative-title">Coverage Start Date</div>
+                  <div>{hexToTimestamp(item.coverageStartDate._hex)}</div>
+                </div>
+                <div className="py-1">
+                  <div className="derivative-title">Coverage End Date </div>
+                  <div>{hexToTimestamp(item.coverageEndDate._hex)}</div>
+                </div>
+                <div className="py-1">
+                  <div className="derivative-title">Strike Value</div>
+                  <div>{parseInt(item.strikeValue._hex, 16)} HDD</div>
+                </div>
+                <div className="py-1">
+                  <div className="derivative-title">Premium Amount</div>
+                  <div>
+                    {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
+                  </div>
+                </div>
+
+                <div className="py-1">
+                  <div className="derivative-title">Payout Amount</div>
+                  <div>
+                    {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
+                  </div>
                 </div>
                 {/* <div>Contract Type: </div> */}
-                <div>Location: {item.location}</div>
+                <div className="py-1">
+                  <div className="derivative-title">Location </div>
+                  <div>{item.location}</div>
+                </div>
+                <div className="py-1">
+                  <div className="derivative-title">Maximum buyers</div>
+                  <div>{parseInt(item.maxBuyers._hex, 16)}</div>
+                </div>
               </div>
               <div className="">
                 <button
                   type="button"
-                  className="btn buy-derivative-btn"
-                  data-bs-toggle="modal"
-                  data-bs-target={`#exampleModal-${key}`}
+                  className="btn btn-danger buy-derivative-btn"
+                  onClick={() => buyContract(item.contractId, key)}
                 >
-                  View
+                  {btnloading[key] ? (
+                    <>
+                      <SyncLoader
+                        color="#fff"
+                        size={13}
+                        speedMultiplier={0.7}
+                      />
+                    </>
+                  ) : (
+                    <>Buy</>
+                  )}
                 </button>
-
-                <div
-                  className="modal fade"
-                  id={`exampleModal-${key}`}
-                  tabindex="-1"
-                  aria-labelledby={`exampleModalLabel-${key}`}
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id={`exampleModalLabel-${key}`}>
-                          Contract details
-                        </h5>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body">
-                        <form>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Name
-                            </label>
-                            <div className="modal-form-data">{item.name}</div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Description
-                            </label>
-                            <div className="modal-form-data">
-                              {item.description}
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Location
-                            </label>
-                            <div className="modal-form-data">
-                              {item.location}
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Coverage Start Date
-                            </label>
-                            <div className="modal-form-data">
-                              {hexToTimestamp(item.coverageStartDate._hex)}
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Coverage End Date
-                            </label>
-                            <div className="modal-form-data">
-                              {hexToTimestamp(item.coverageEndDate._hex)}
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Strike Value
-                            </label>
-                            <div className="modal-form-data">
-                              {parseInt(item.strikeValue._hex, 16)} HDD
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Premium Amount
-                            </label>
-                            <div className="modal-form-data">
-                              {parseInt(item.premiumAmount._hex, 16)/1000000} USDC
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Payout Amount
-                            </label>
-                            <div className="modal-form-data">
-                              {parseInt(item.payoutAmount._hex, 16)/1000000} USDC
-                            </div>
-                          </div>
-                          <div className="mb-3">
-                            <label className="form-label modal-form-text">
-                              Max buyers
-                            </label>
-                            <div className="modal-form-data">
-                              {parseInt(item.maxBuyers._hex, 16)}
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-danger"
-                          onClick={() => buyContract(item.contractId)}
-                        >
-                          <>Buy</>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
+              <ToastContainer />
             </div>
           ))
         ) : (

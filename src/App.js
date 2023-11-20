@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Derivatives from "./pages/Derivatives";
 import Analysis from "./pages/Analysis";
+import Create from "./pages/Create";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/derivatives" element={<Derivatives />}></Route>
           <Route path="/analysis" element={<Analysis />}></Route>
+          <Route path="/create" element={<Create />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

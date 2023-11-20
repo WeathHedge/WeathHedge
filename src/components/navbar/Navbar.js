@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import "../../styles/navbar/Navbar.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/WeathHedge1.png";
+import { derivativeInstance } from "../Contract";
+import { useAccount } from "wagmi";
+import { ethers } from "ethers";
 
 function Navbar() {
+  const [isOwner, setIsOwner] = useState(false);
+  const { address } = useAccount();
+
+  const verifyAddr = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        if (!provider) {
+          console.log("Metamask is not installed, please install!");
+        }
+        const con = await derivativeInstance();
+        const deployer = await con.getDeployerAddress();
+        if (deployer == address) {
+          setIsOwner(true);
+        }
+      }
+    } catch (e) {
+      console.log("Error in creating user account: ", e);
+    }
+  };
+
+  useEffect(() => {
+    verifyAddr();
+  });
+
   return (
     <div className="navbar-component sticky-top">
       <nav
@@ -68,6 +98,20 @@ function Navbar() {
                   <span className="landing-navbar">Profile</span>
                 </NavLink>
               </li>
+
+              {isOwner ? (
+                <li className="nav-item py-2 px-lg-2">
+                  <NavLink
+                    className="nav-link px-1 p-0 d-flex align-items-center"
+                    to="/create"
+                  >
+                    <span className="landing-navbar">Create</span>
+                  </NavLink>
+                </li>
+              ) : (
+                ""
+              )}
+
               <li className="nav-item py-2 px-2">
                 <ConnectButton />
               </li>

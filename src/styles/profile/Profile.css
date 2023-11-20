@@ -1,13 +1,29 @@
-.user-contracts-component{
-    border: 2px solid black;
-    border-radius: 1.5rem;
+.user-contracts-component {
+  border: 2px solid black;
+  border-radius: 1.5rem;
 }
 
-.user-contracts-details{
-    text-align: left;
-    padding: 1rem;
+.user-contracts-details {
+  text-align: left;
+  padding: 1rem;
 }
 
-.row{
-    padding: 0rem;
+.row > * {
+  padding: 0rem;
+}
+
+.user-contracts-title {
+  padding: 0.3rem 0rem;
+}
+
+.user-derivative-head {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-contract-img-div {
+  border-top-right-radius: 1.4rem;
+  border-top-left-radius: 1.4rem;
+  height: 150px;
+  overflow: hidden;
 }

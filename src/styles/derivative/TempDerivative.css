@@ -1,6 +1,6 @@
 .temp-derivative-main {
   border: 2px solid black;
-  border-radius: 1rem;
+  border-radius: 1.1rem;
   text-align: left;
   position: relative;
   padding-bottom: 3rem;
@@ -23,12 +23,18 @@
   padding: 1rem;
 }
 
+.derivative-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 .buy-derivative-btn {
-  display: grid;
+  /* display: grid; */
   width: 100%;
   cursor: pointer;
   font-size: 1.2rem;
-  background-color: #5cd200;
+  justify-content: center;
+  /* background-color: #5cd200; */
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   padding: 0.6rem;
@@ -41,4 +47,10 @@
   border: 1px solid grey;
   padding: 0.3rem 0.4rem;
   border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 650px;
+  }
 }

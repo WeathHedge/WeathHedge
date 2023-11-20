@@ -127,7 +127,7 @@ function ProfilePage() {
           <h2>Contracts Bought:</h2>
         </div>
 
-        <div className="row col-11 px-0 user-contracts-main mt-4 py-3 px-sm-3 justify-content-around">
+        <div className="row col-12 px-0 user-contracts-main mt-4 py-3 px-sm-3 justify-content-around">
           <div className="d-flex justify-content-center">
             {/* <ClipLoader color="#4250ff" /> */}
           </div>
@@ -138,48 +138,63 @@ function ProfilePage() {
           ) : allUserContracts.length > 0 ? (
             allUserContracts.map((item, key) => (
               <div
-                className="col-xxl-3 col-md-4 col-sm-7 col-11 mx-1 mb-5 user-contracts-component"
+                className="col-md-5 col-sm-7 col-11 mx-1 mb-5 user-contracts-component"
                 index={key}
               >
-                <div className="derivative-img-div">
+                <div className="user-contract-img-div">
                   <img
-                    // src={`https://gateway.lighthouse.storage/ipfs/${item.uploadImage}`}
-                    // src={item.image}
-                    src={temp}
+                    src={`https://ipfs.io/ipfs/${item.image}`}
+                    // src={temp}
                     className="derivative-img"
+                    alt="image not found"
                   ></img>
                 </div>
                 <div className="user-contracts-details">
                   <div className="user-contracts-title">
-                    Contract title: {item.name}
-                  </div>
-                  <div className="user-contracts-desc">
-                    Contract description: {item.description}
+                    <div className="user-derivative-head">Contract title </div>
+                    <div>{item.name}</div>
                   </div>
                   <div className="user-contracts-title">
-                    Location: {item.location}
-                  </div>
-                  <div className="user-contracts-badge">
-                    Coverage Start Date:{" "}
-                    {hexToTimestamp(item.coverageStartDate._hex)}
-                  </div>
-                  <div className="user-contracts-btn">
-                    Coverage End Date:{" "}
-                    {hexToTimestamp(item.coverageEndDate._hex)}
+                    <div className="user-derivative-head">
+                      Contract description
+                    </div>
+                    <div>{item.description}</div>
                   </div>
                   <div className="user-contracts-title">
-                    Strike Value: {parseInt(item.strikeValue._hex, 16)} USDC
+                    <div className="user-derivative-head">Location </div>
+                    <div>{item.location}</div>
                   </div>
                   <div className="user-contracts-title">
-                    Premuim Amount:{" "}
-                    {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
+                    <div className="user-derivative-head">
+                      Coverage Start Date
+                    </div>
+                    <div>{hexToTimestamp(item.coverageStartDate._hex)}</div>
                   </div>
                   <div className="user-contracts-title">
-                    Payout Amount:{" "}
-                    {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
+                    <div className="user-derivative-head">
+                      Coverage End Date
+                    </div>
+                    <div>{hexToTimestamp(item.coverageEndDate._hex)}</div>
                   </div>
                   <div className="user-contracts-title">
-                    Maximum Buyers: {parseInt(item.maxBuyers._hex, 16)}
+                    <div className="user-derivative-head">Strike Value </div>
+                    <div>{parseInt(item.strikeValue._hex, 16)} USDC </div>
+                  </div>
+                  <div className="user-contracts-title">
+                    <div className="user-derivative-head">Premium Amount </div>
+                    <div>
+                      {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
+                    </div>
+                  </div>
+                  <div className="user-contracts-title">
+                    <div className="user-derivative-head">Payout Amount </div>
+                    <div>
+                      {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
+                    </div>
+                  </div>
+                  <div className="user-contracts-title">
+                    <div className="user-derivative-head">Maximum Buyers </div>
+                    <div>{parseInt(item.maxBuyers._hex, 16)}</div>
                   </div>
                 </div>
               </div>
