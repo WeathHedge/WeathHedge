@@ -18,14 +18,6 @@ function TempDerivative() {
   const navigate = useNavigate();
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [btnloading, setbtnloading] = useState([]);
-  const [showText, setShowText] = useState(false);
-
-  const handleMouseEnter1 = () => {
-    setShowText(true);
-  };
-  const handleMouseLeave1 = () => {
-    setShowText(false);
-  };
 
   const allDerivativeData = async () => {
     try {
@@ -122,6 +114,26 @@ function TempDerivative() {
     return localDate;
   }
 
+  useEffect(() => {
+    // Enable Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.map(
+      (tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl)
+    );
+
+    // Clean up when the component unmounts
+    return () => {
+      tooltipTriggerList.forEach((tooltipTriggerEl) => {
+        const tooltip = window.bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+        if (tooltip) {
+          tooltip.dispose();
+        }
+      });
+    };
+  });
+
   return (
     <div>
       <div className="row col-12 d-flex py-5 px-5 justify-content-around">
@@ -146,58 +158,143 @@ function TempDerivative() {
                 <div className="py-1">
                   <div className="derivative-title">
                     Contract Name &nbsp;&nbsp;{" "}
-                    <i
-                      className="fas fa-info-circle head-info"
-                      onMouseEnter={handleMouseEnter1}
-                      onMouseLeave={handleMouseLeave1}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="This field displays the type of the contract."
+                      className="icon-link"
                     >
-                      {" "}
-                    </i>
-                    {showText && (
-                      <div className="text-center d-flex justify-content-center align-items-center mb-3 mb-sm-4 buy-sub-text">
-                        Contract name.{" "}
-                      </div>
-                    )}
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
                   </div>
                   <div>{item.name}</div>
                 </div>
 
                 <div className="py-1">
-                  <div className="derivative-title">Contract description </div>
+                  <div className="derivative-title">
+                    Contract description &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="This field displays the short description about the contract."
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>{item.description}</div>
                 </div>
                 <div className="py-1">
-                  <div className="derivative-title">Coverage Start Date</div>
+                  <div className="derivative-title">
+                    Coverage Start Date &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="This field displays the "
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>{hexToTimestamp(item.coverageStartDate._hex)}</div>
                 </div>
                 <div className="py-1">
-                  <div className="derivative-title">Coverage End Date </div>
+                  <div className="derivative-title">
+                    Coverage End Date &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="Coverage end date"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>{" "}
+                  </div>
                   <div>{hexToTimestamp(item.coverageEndDate._hex)}</div>
                 </div>
                 <div className="py-1">
-                  <div className="derivative-title">Strike Value</div>
+                  <div className="derivative-title">
+                    Strike Value &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="Strike value"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>{parseInt(item.strikeValue._hex, 16)} HDD</div>
                 </div>
                 <div className="py-1">
-                  <div className="derivative-title">Premium Amount</div>
+                  <div className="derivative-title">
+                    Premium Amount &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="Premium amount"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>
                     {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
                   </div>
                 </div>
 
                 <div className="py-1">
-                  <div className="derivative-title">Payout Amount</div>
+                  <div className="derivative-title">
+                    Payout Amount &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="Payout amount"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>
                     {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
                   </div>
                 </div>
                 {/* <div>Contract Type: </div> */}
                 <div className="py-1">
-                  <div className="derivative-title">Location </div>
+                  <div className="derivative-title">
+                    Location &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="location"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>{" "}
+                  </div>
                   <div>{item.location}</div>
                 </div>
                 <div className="py-1">
-                  <div className="derivative-title">Maximum buyers</div>
+                  <div className="derivative-title">
+                    Maximum buyers &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="maximum buyers"
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>
+                  </div>
                   <div>{parseInt(item.maxBuyers._hex, 16)}</div>
                 </div>
               </div>

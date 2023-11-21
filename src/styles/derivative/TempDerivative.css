@@ -49,6 +49,14 @@
   border-radius: 0.3rem;
 }
 
+.icon-link {
+  color: black;
+}
+
+.icon-link:hover {
+  color: black;
+}
+
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 650px;
