@@ -102,12 +102,23 @@ function HomePage() {
 
   return (
     <div >
-      <div className="d-flex mx-auto">
+      {/* <div className="d-flex mx-auto">
       <div className=" home-title col-6 my-auto"> <span style={{fontSize:"2rem", fontWeight:"700", backgroundColor:"black", width:"70%", borderRadius:"2.5rem", marginTop:"2rem", padding:"0.8rem 5rem "}}><span className="text-white">Welcome to </span> <span style={{color:"#93ff00"}}> Weath</span><span style={{color:"white"}}>Hedge</span> </span></div>
 
       <div>
         <img className="col-6" src={homeImage} width={"550px"}/>
       </div>
+      </div> */}
+
+      <div>
+        <div className="bg-dark py-3 my-2">
+          <div className="col-5 ">
+            <h1 className="text-white">Weather-Proof Your Future with <span style={{color:"#93ff00"}}> Weath</span><span style= {{color:"white"}}>Hedge</span>!<br/> Hedge Smart, Hedge Secure.</h1>
+          </div>
+          <div className="col-5">
+              
+          </div>
+        </div>
       </div>
 
       

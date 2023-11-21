@@ -6,7 +6,7 @@ function Home() {
   return (
     <div>
       <HomePage />
-      <Sponcer />
+      {/* <Sponcer /> */}
     </div>
   );
 }
