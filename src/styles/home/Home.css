@@ -145,6 +145,14 @@
   animation: bg 20s infinite;
 }
 
+.green-glow-text {
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 4px #00ff00; 
+}
+
+
 @keyframes bg {
   0% {
     background-position: 0% 50%;
@@ -162,6 +170,23 @@
 }
 
 .home-title {
+  color: white;
   font-size: 1.3rem;
   font-weight: 600;
+}
+.homeTitleBox{
+  font-size: 2rem;
+  color: white;
+  font-weight: 700;
+  background-color: black;
+  width: 70%;
+  border-radius: 2.5rem;
+  padding:0.8rem 5rem;
+  border: 2px solid white;
+}
+
+.homeTitleBox:hover{
+  background-color: #1a1a1a;
+  transition: 0.2s ease-in-out;
+  border: 3px solid white;
 }
