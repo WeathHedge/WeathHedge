@@ -31,8 +31,14 @@
   border-radius: 2.4rem !important;
 }
 
+.accordion-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .accordion-list-item {
   text-align: left;
+  font-size: 1.1rem;
 }
 
 .temp-derivative-main {

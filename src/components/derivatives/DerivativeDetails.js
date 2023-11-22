@@ -9,9 +9,7 @@ function DerivativeDetails() {
         style={{ paddingTop: "3rem", paddingBottom: "2.5rem" }}
       >
         {" "}
-        <span className="derivativeTitleBox">
-          Basic Term Information
-        </span>
+        <span className="derivativeTitleBox">Basic Information</span>
       </div>
       <div
         className="my-3 accordion accordion-box-border"
@@ -20,7 +18,7 @@ function DerivativeDetails() {
         <div className="accordion-item mb-3 accordion-box-border">
           <h2 className="accordion-header" id="headingOne">
             <button
-              className="accordion-button collapsed btn rounded-pill shadow-none"
+              className="accordion-button collapsed btn rounded-pill shadow-none accordion-heading"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
@@ -51,7 +49,7 @@ function DerivativeDetails() {
         <div className="accordion-item mb-3 accordion-box-border">
           <h2 className="accordion-header" id="headingTwo">
             <button
-              className="accordion-button collapsed btn rounded-pill shadow-none"
+              className="accordion-button collapsed btn rounded-pill shadow-none accordion-heading"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseTwo"
@@ -95,14 +93,14 @@ function DerivativeDetails() {
         <div className="accordion-item mb-3 accordion-box-border">
           <h2 className="accordion-header" id="headingThree">
             <button
-              className="accordion-button collapsed btn rounded-pill shadow-none"
+              className="accordion-button collapsed btn rounded-pill shadow-none accordion-heading"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseThree"
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              3. How HDD/CDD are calculated?
+              3. How are HDD/CDD calculated?
             </button>
           </h2>
           <div
@@ -140,7 +138,7 @@ function DerivativeDetails() {
         <div className="accordion-item mb-3 accordion-box-border">
           <h2 className="accordion-header" id="headingFour">
             <button
-              className="accordion-button collapsed btn rounded-pill shadow-none"
+              className="accordion-button collapsed btn rounded-pill shadow-none accordion-heading"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseFour"

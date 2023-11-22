@@ -1,3 +1,5 @@
 .form-label{
     display: flex;
+    color: white;
+    font-weight: 700;
 }

@@ -104,7 +104,7 @@ function CreateContract() {
     <div className="col-lg-6 col-7 mx-auto py-4">
       <div className="mb-3">
         <label className="form-label">
-          Upload Image <span style={{ color: "red" }}>*</span>
+          Upload Image <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           className="form-control form-control-md"
@@ -119,7 +119,7 @@ function CreateContract() {
       </div>
       <div className="mb-3">
         <label className="form-label">
-          Name <span style={{ color: "red" }}>*</span>
+          Name <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="text"
@@ -135,7 +135,7 @@ function CreateContract() {
       </div>
       <div className="mb-3">
         <label className="form-label">
-          Description <span style={{ color: "red" }}>*</span>
+          Description <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <textarea
           className="form-control"
@@ -151,7 +151,7 @@ function CreateContract() {
       </div>
       <div className="mb-3">
         <label className="form-label">
-          Location <span style={{ color: "red" }}>*</span>
+          Location <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="text"
@@ -168,7 +168,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Coverage Start Date <span style={{ color: "red" }}>*</span>
+          Coverage Start Date <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="date"
@@ -185,7 +185,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Coverage End Date <span style={{ color: "red" }}>*</span>
+          Coverage End Date <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="date"
@@ -202,7 +202,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Strike Value <span style={{ color: "red" }}>*</span>
+          Strike Value <span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="number"
@@ -219,7 +219,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Premium Amount<span style={{ color: "red" }}>*</span>
+          Premium Amount<span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="number"
@@ -236,7 +236,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Payout Amount<span style={{ color: "red" }}>*</span>
+          Payout Amount<span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="number"
@@ -253,7 +253,7 @@ function CreateContract() {
 
       <div className="mb-3">
         <label className="form-label">
-          Maximum Buyers<span style={{ color: "red" }}>*</span>
+          Maximum Buyers<span style={{ color: "red" }}>&nbsp;*</span>
         </label>
         <input
           type="number"
