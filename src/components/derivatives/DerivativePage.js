@@ -187,6 +187,21 @@ function TempDerivative() {
                 </div>
                 <div className="py-1">
                   <div className="derivative-title">
+                    Location &nbsp;&nbsp;{" "}
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="right"
+                      title="This field displays the location of the given contract."
+                      className="icon-link"
+                    >
+                      <i className="fas fa-info-circle head-info"></i>
+                    </a>{" "}
+                  </div>
+                  <div>{item.location}</div>
+                </div>
+                <div className="py-1">
+                  <div className="derivative-title">
                     Coverage Start Date &nbsp;&nbsp;{" "}
                     <a
                       href="#"
@@ -266,21 +281,7 @@ function TempDerivative() {
                   </div>
                 </div>
                 {/* <div>Contract Type: </div> */}
-                <div className="py-1">
-                  <div className="derivative-title">
-                    Location &nbsp;&nbsp;{" "}
-                    <a
-                      href="#"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="right"
-                      title="This field displays the location of the given contract."
-                      className="icon-link"
-                    >
-                      <i className="fas fa-info-circle head-info"></i>
-                    </a>{" "}
-                  </div>
-                  <div>{item.location}</div>
-                </div>
+
                 <div className="py-1">
                   <div className="derivative-title">
                     Maximum buyers &nbsp;&nbsp;{" "}
