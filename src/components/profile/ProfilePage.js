@@ -258,7 +258,7 @@ function ProfilePage() {
                         <i className="fas fa-info-circle head-info"></i>
                       </a>
                     </div>
-                    <div>{parseInt(item.strikeValue._hex, 16)} USDC </div>
+                    <div>{parseInt(item.strikeValue._hex, 16)} HDD </div>
                   </div>
                   <div className="user-contracts-title">
                     <div className="user-derivative-head">
