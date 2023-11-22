@@ -1,0 +1,22 @@
+.homeImageAbout{
+    width:200px;
+    height:197px;
+    border-radius:2rem 0 0 2rem;
+}
+
+.homeAboutSingleDiv{
+    border-radius:2rem;
+    height:200px;
+    /* background-color: #424242; */
+    background-color: #000;
+    color: white;
+    border: 2px solid white;
+    font-weight: 550;
+}
+
+.homeAboutSingleDiv:hover{
+    background-color: white;
+    color: black;
+    opacity: 90%;
+    transition: 0.45s ease-in;
+}
