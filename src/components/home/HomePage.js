@@ -37,14 +37,7 @@ function HomePage() {
 
   return (
     <div style={{backgroundColor:"black"}} >
-      {/* <div className="d-flex mx-auto">
-      <div className=" home-title col-6 my-auto"> <span style={{fontSize:"2rem", fontWeight:"700", backgroundColor:"black", width:"70%", borderRadius:"2.5rem", marginTop:"2rem", padding:"0.8rem 5rem "}}><span className="text-white">Welcome to </span> <span style={{color:"#93ff00"}}> Weath</span><span style={{color:"white"}}>Hedge</span> </span></div>
-
-      <div>
-        <img className="col-6" src={homeImage} width={"550px"}/>
-      </div>
-      </div> */}
-
+      
       <div >
       <div className="d-flex" style={{padding: "4rem 0" }}>
         <div className="col-5 mx-auto my-auto">
@@ -54,27 +47,6 @@ function HomePage() {
           <img src={weatherGif} alt="Weather GIF" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} />
         </div>
       </div>
-
-
-      {/* <div className="  d-flex" style={{backgroundColor:"#ece4db", padding:"6rem  0"}}>
-      <div className="col-5 mx-auto my-auto">
-        <div className=" py-5 px-3" style={{borderRadius:"3rem", backgroundColor:"black"}}>
-        <h1 className="text-white">Weather-Proof Your Future with <span style={{ color: "#93ff00" }}>Weath</span><span style={{ color: "white" }}>Hedge</span>!<br /> Hedge Smart, Hedge Secure.</h1>
-        </div>
-      </div>
-      <div className="col-5 mx-auto">
-        <img src={weatherGif} alt="Weather GIF" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: "50%" }}/>
-      </div>
-    </div> */}
-
-      {/* <div className="  d-flex" style={{backgroundColor:"black", padding:"6rem  0"}}>
-      <div className="col-5 mx-auto my-auto">
-        <h1 className="text-white">Weather-Proof Your Future with <span style={{ color: "#93ff00" }}>Weath</span><span style={{ color: "white" }}>Hedge</span>!<br /> Hedge Smart, Hedge Secure.</h1>
-      </div>
-      <div className="col-5 mx-auto">
-        <img src={weatherGif} alt="Weather GIF" width={500} style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: "50%" }}/>
-      </div>
-    </div> */}
       </div>
 
       <div className=" home-title my-auto" style={{paddingTop:"3rem", paddingBottom:"2.5rem"}}> <span className="homeTitleBox"><span>About  </span> <span style={{color:"#93ff00"}}> Weath</span><span>Hedge</span></span></div>
