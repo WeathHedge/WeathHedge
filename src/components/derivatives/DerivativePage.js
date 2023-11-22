@@ -135,16 +135,16 @@ function TempDerivative() {
   });
 
   return (
-    <div>
-      <div className="row col-12 d-flex py-5 px-5 justify-content-around">
+    <div className="main-contract-component">
+      <div className="row col-12 py-5 px-5 justify-content-around">
         {isPageLoading ? (
           <div>
-            <ClipLoader color="#000" />
+            <ClipLoader color="#5cd200" />
           </div>
         ) : allDerivatives.length > 0 ? (
           allDerivatives.map((item, key) => (
             <div
-              className="temp-derivative-main col-md-5 col-sm-7 col-11 mb-5"
+              className="temp-derivative-main col-md-5 col-sm-7 col-11 mx-1 mb-5"
               index={key}
             >
               <div className="derivative-img-div">
@@ -152,7 +152,6 @@ function TempDerivative() {
                   src={`https://ipfs.io/ipfs/${item.image}`}
                   className="derivative-img"
                 />
-                {/* <a href="https://ipfs.io/ipfs/${item.image}">Click here</a> */}
               </div>
               <div className="derivative-details">
                 <div className="py-1">
@@ -193,7 +192,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the "
+                      title="This field displays the start date of the contract"
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -208,7 +207,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="Coverage end date"
+                      title="This field displays the end date of the contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -223,7 +222,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="Strike value"
+                      title="This field displays the strike value of the contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -238,7 +237,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="Premium amount"
+                      title="This field displays the premium amount of the contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -256,7 +255,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="Payout amount"
+                      title="This field displays the payout amount of the contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -274,7 +273,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="location"
+                      title="This field displays the location of the given contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -289,7 +288,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="maximum buyers"
+                      title="This field displays the maximum buyers of this contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -301,7 +300,7 @@ function TempDerivative() {
               <div className="">
                 <button
                   type="button"
-                  className="btn btn-danger buy-derivative-btn"
+                  className="btn buy-derivative-btn"
                   onClick={() => buyContract(item.contractId, key)}
                 >
                   {btnloading[key] ? (
