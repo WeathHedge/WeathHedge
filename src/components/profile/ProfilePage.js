@@ -12,6 +12,26 @@ function ProfilePage() {
   const { address } = useAccount();
   const [isPageLoading, setIsPageLoading] = useState(true);
 
+  useEffect(() => {
+    // Enable Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.map(
+      (tooltipTriggerEl) => new window.bootstrap.Tooltip(tooltipTriggerEl)
+    );
+
+    // Clean up when the component unmounts
+    return () => {
+      tooltipTriggerList.forEach((tooltipTriggerEl) => {
+        const tooltip = window.bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+        if (tooltip) {
+          tooltip.dispose();
+        }
+      });
+    };
+  });
+
   const allDerivativeData = async () => {
     try {
       const { ethereum } = window;
@@ -85,13 +105,13 @@ function ProfilePage() {
   };
 
   return (
-    <div>
+    <div className="main-profile-page">
       {/* Withdraw */}
       <div className="d-flex py-4 col-11 mx-auto align-items-center">
         <div className="d-flex col-6 align-items-center">
           <div className="">
             {" "}
-            <h2>Withdraw Amount:</h2>
+            <h2 className="text-light">Withdraw Amount:</h2>
           </div>
           <div className="px-3">
             <button className="btn btn-success" onClick={withdrawAmount}>
@@ -103,7 +123,7 @@ function ProfilePage() {
         <div className="d-flex col-6 align-items-center">
           <div className="">
             {" "}
-            <h2>Stake Amount to Vault:</h2>
+            <h2 className="text-light">Stake Amount to Vault:</h2>
           </div>
           <div className="px-3">
             <button className="btn btn-success" onClick={transferAmount}>
@@ -124,7 +144,7 @@ function ProfilePage() {
       <div>
         <div className="d-flex col-11 mx-auto py-2">
           {" "}
-          <h2>Contracts Bought:</h2>
+          <h2 className="text-light">Contracts Bought:</h2>
         </div>
 
         <div className="row col-12 px-0 user-contracts-main mt-4 py-3 px-sm-3 justify-content-around">
@@ -133,7 +153,7 @@ function ProfilePage() {
           </div>
           {isPageLoading ? (
             <div>
-              <ClipLoader color="#000" />
+              <ClipLoader color="#5cd200" />
             </div>
           ) : allUserContracts.length > 0 ? (
             allUserContracts.map((item, key) => (
@@ -151,49 +171,142 @@ function ProfilePage() {
                 </div>
                 <div className="user-contracts-details">
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Contract title </div>
+                    <div className="user-derivative-head">
+                      Contract Name &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the type of the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
                     <div>{item.name}</div>
                   </div>
                   <div className="user-contracts-title">
                     <div className="user-derivative-head">
-                      Contract description
+                      Contract description &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the short description about the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
                     </div>
                     <div>{item.description}</div>
                   </div>
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Location </div>
+                    <div className="user-derivative-head">
+                      Location &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the location of the given contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
                     <div>{item.location}</div>
                   </div>
                   <div className="user-contracts-title">
                     <div className="user-derivative-head">
-                      Coverage Start Date
+                      Coverage Start Date &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the start date of the contract"
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
                     </div>
                     <div>{hexToTimestamp(item.coverageStartDate._hex)}</div>
                   </div>
                   <div className="user-contracts-title">
                     <div className="user-derivative-head">
-                      Coverage End Date
+                      Coverage End Date &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the end date of the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
                     </div>
                     <div>{hexToTimestamp(item.coverageEndDate._hex)}</div>
                   </div>
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Strike Value </div>
-                    <div>{parseInt(item.strikeValue._hex, 16)} USDC </div>
+                    <div className="user-derivative-head">
+                      Strike Value &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the strike value of the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
+                    <div>{parseInt(item.strikeValue._hex, 16)} HDD </div>
                   </div>
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Premium Amount </div>
+                    <div className="user-derivative-head">
+                      Premium Amount &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the premium amount of the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
                     <div>
                       {parseInt(item.premiumAmount._hex, 16) / 1000000} USDC
                     </div>
                   </div>
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Payout Amount </div>
+                    <div className="user-derivative-head">
+                      Payout Amount &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the payout amount of the contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
                     <div>
                       {parseInt(item.payoutAmount._hex, 16) / 1000000} USDC
                     </div>
                   </div>
                   <div className="user-contracts-title">
-                    <div className="user-derivative-head">Maximum Buyers </div>
+                    <div className="user-derivative-head">
+                      Maximum Buyers &nbsp;&nbsp;{" "}
+                      <a
+                        href="#"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        title="This field displays the maximum buyers of this contract."
+                        className="icon-link"
+                      >
+                        <i className="fas fa-info-circle head-info"></i>
+                      </a>
+                    </div>
                     <div>{parseInt(item.maxBuyers._hex, 16)}</div>
                   </div>
                 </div>

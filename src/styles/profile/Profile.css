@@ -1,6 +1,12 @@
+.main-profile-page{
+  background-color: black;
+}
+
 .user-contracts-component {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 1.5rem;
+  color: white;
+  background-color: #424242;
 }
 
 .user-contracts-details {

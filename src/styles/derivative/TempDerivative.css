@@ -1,9 +1,15 @@
+.main-contract-component{
+  background-color: #000;
+}
+
 .temp-derivative-main {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 1.1rem;
   text-align: left;
   position: relative;
   padding-bottom: 3rem;
+  color: white;
+  background-color: #424242;
 }
 
 .derivative-img-div {
@@ -34,13 +40,14 @@
   cursor: pointer;
   font-size: 1.2rem;
   justify-content: center;
-  /* background-color: #5cd200; */
+  background-color: #5cd200;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   padding: 0.6rem;
   position: absolute;
   bottom: 0;
   color: #fff;
+  font-weight: 600;
 }
 
 .modal-form-data {
@@ -50,12 +57,41 @@
 }
 
 .icon-link {
-  color: black;
+  color: white;
 }
 
 .icon-link:hover {
-  color: black;
+  color: white;
 }
+
+.tooltip-inner {
+  background-color: #fff;
+  color: #000;
+}
+
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before {
+  border-top-color: #fff;
+}
+
+.bs-tooltip-end .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before {
+  border-right-color: #fff;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow::before {
+  border-bottom-color: #fff;
+}
+
+.bs-tooltip-start .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before {
+  border-left-color: #fff;
+}
+
+/* .table > :not(caption) > * > * {
+  padding: 0.5rem 2rem;
+} */
 
 @media (min-width: 576px) {
   .modal-dialog {
