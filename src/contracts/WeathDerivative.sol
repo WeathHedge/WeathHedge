@@ -46,6 +46,10 @@ contract WeatherDerivative {
         _;
     }
 
+    function getDeployerAddress() public view returns (address) {
+        return platformOwner;
+    }
+
     event ContractPurchased(uint256 indexed contractId, address indexed buyer, uint256 purchaseTimestamp);
 
 
@@ -125,9 +129,6 @@ contract WeatherDerivative {
         return false; // User has not purchased this contract
     }
 
-
-
-
     function getUsdcBalance() public view returns (uint256) {
         return usdc.balanceOf(address(this));
     }
@@ -176,9 +177,7 @@ contract WeatherDerivative {
             }
         }
         // Distribute the payout to the stakeholders
-        distributePayout(contractId, payout);
-
-    
+        distributePayout(contractId, payout); 
     }
 
 

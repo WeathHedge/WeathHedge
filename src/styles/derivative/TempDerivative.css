@@ -2,6 +2,22 @@
   background-color: #000;
 }
 
+.accordian-div{
+  background: linear-gradient(to left, #6A79FF, #4250FF);
+  color: white;
+  padding: 1.8rem;
+  border-radius: 2rem;
+  margin-top: 1rem;
+}
+
+.accordion-box-border{
+  border-radius: 2.4rem !important;
+}
+
+.accordion-list-item{
+  text-align: left;
+}
+
 .temp-derivative-main {
   border: 2px solid white;
   border-radius: 1.1rem;

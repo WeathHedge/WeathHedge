@@ -177,7 +177,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the short description about the contract."
+                      title="A short summary that tells you the basic details and what the contract is all about."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -192,7 +192,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the location of the given contract."
+                      title="The place where the HDD/CDD of the given contract are based on."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -207,7 +207,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the start date of the contract"
+                      title="The day when the contract's execution begins."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -222,7 +222,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the end date of the contract."
+                      title="The day when the contract is terminated."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -237,7 +237,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the strike value of the contract."
+                      title="It is a threshold value above which it is expected that HDD/CDD will not exceed."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -252,7 +252,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the premium amount of the contract."
+                      title="The amount you pay at the beginning to buy the contract."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -270,7 +270,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the payout amount of the contract."
+                      title="The amount you can get after contract reaches its expiration date and the contract is settled."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
@@ -289,7 +289,7 @@ function TempDerivative() {
                       href="#"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="This field displays the maximum buyers of this contract."
+                      title="The most people allowed to have this contract, so you know how many others can join in."
                       className="icon-link"
                     >
                       <i className="fas fa-info-circle head-info"></i>
