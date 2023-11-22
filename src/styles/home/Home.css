@@ -145,6 +145,7 @@
   animation: bg 20s infinite;
 }
 
+
 @keyframes bg {
   0% {
     background-position: 0% 50%;
