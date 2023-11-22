@@ -136,6 +136,13 @@ function TempDerivative() {
 
   return (
     <div className="main-contract-component">
+      <div
+        className="derivative-details-title my-auto"
+        style={{ paddingTop: "3rem", paddingBottom: "2.5rem" }}
+      >
+        {" "}
+        <span className="derivativeTitleBox">List of Weather Derivative Contracts</span>
+      </div>
       <div className="row col-12 py-5 px-5 justify-content-around">
         {isPageLoading ? (
           <div>

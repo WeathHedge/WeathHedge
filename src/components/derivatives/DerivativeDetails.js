@@ -5,6 +5,15 @@ function DerivativeDetails() {
   return (
     <div className="col-11 mx-auto">
       <div
+        className="derivative-details-title my-auto"
+        style={{ paddingTop: "3rem", paddingBottom: "2.5rem" }}
+      >
+        {" "}
+        <span className="derivativeTitleBox">
+          Basic Term Information
+        </span>
+      </div>
+      <div
         className="my-3 accordion accordion-box-border"
         id="accordionExample"
       >
@@ -18,7 +27,7 @@ function DerivativeDetails() {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              1. What is a derivative contract?
+              1. What is a weather derivative contract?
             </button>
           </h2>
           <div
@@ -29,9 +38,11 @@ function DerivativeDetails() {
           >
             <div className="accordion-body">
               <li className="accordion-list-item">
-                A derivative contract is a financial instrument whose value is
-                derived from the value of an underlying asset, index, rate, or
-                other reference point.
+                Weather derivatives are financial contracts that allow
+                individuals or businesses to hedge against the risk of financial
+                loss due to adverse weather conditions. The buyer pays a premium
+                to the seller, who agrees to make a payout if certain weather
+                conditions occur.
               </li>
             </div>
           </div>
