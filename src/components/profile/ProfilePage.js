@@ -122,6 +122,7 @@ function ProfilePage() {
             >
               Withdraw Here
             </button>
+            <span className="text-white">  (Coming Soon)</span>
           </div>
         </div>
         <div className="d-flex col-6 align-items-center">
@@ -138,6 +139,7 @@ function ProfilePage() {
             >
               Stake Here
             </button>
+            <span className="text-white">  (Coming Soon)</span>
 
             <div
               className="modal fade"
