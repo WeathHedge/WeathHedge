@@ -368,7 +368,7 @@ function ProfilePage() {
                 height: "40vh",
               }}
             >
-              No Contracts Available
+              No Contracts Bought
             </div>
           )}
         </div>
