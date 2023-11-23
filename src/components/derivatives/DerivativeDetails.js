@@ -189,19 +189,14 @@ function DerivativeDetails() {
             <div className="accordion-body">
               <li className="accordion-list-item">
                 You can get the test USDC from{" "}
-                <a href="https://app.aave.com/faucet/">here</a>.
+                <a href="https://app.aave.com/faucet/" target="_blank">
+                  here
+                </a>
+                .
               </li>
               <li className="accordion-list-item">
-                After getting USDC, you need to set the USDC allowance. You can
-                set the allowance by using{" "}
-                <a href="https://tokenapprover.vercel.app/">this</a> link.
-              </li>
-              <li className="accordion-list-item">
-                So here in the above link, <br />
-                1. You have to provide your USDC token address <br /> 2. The
-                USDC amount that the third party can access. <br /> 3. In
-                Address to Approve, you have to write
-                0xBF7c9ab4cC65A1d02fB9f4B085fe928B953ef45A address.
+                After getting USDCs, you can click on the buy button. Firstly, you need to approve the USDC then only you
+                can buy the contract.
               </li>
             </div>
           </div>

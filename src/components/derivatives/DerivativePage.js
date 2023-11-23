@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import "../../styles/derivative/TempDerivative.css";
 import temp from "../../assets/temp.jpg";
-import { derivativeInstance } from "../Contract";
+import { derivativeInstance, DERIVATIVE_ADDRESS } from "../Contract";
 import { useNavigate } from "react-router-dom";
 import {
   ClipLoader,
@@ -11,6 +11,7 @@ import {
   SyncLoader,
 } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import tokenABI from "../../contracts/artifacts/Erc20Abi.json";
 import "react-toastify/dist/ReactToastify.css";
 
 function TempDerivative() {
@@ -47,7 +48,7 @@ function TempDerivative() {
     fetchDerivativeContracts();
   }, []);
 
-  const buyContract = async (id, index) => {
+  const buyContract = async (id, amount, index) => {
     try {
       toast.info("Process is in Progress", {
         position: "top-left",
@@ -71,6 +72,31 @@ function TempDerivative() {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
+
+        var tokenContract = new ethers.Contract(
+          "0x52d800ca262522580cebad275395ca6e7598c014",
+          tokenABI,
+          signer
+        );
+        const approvalTx = await tokenContract.approve(
+          DERIVATIVE_ADDRESS,
+          amount
+        );
+        const approvalReceipt = await approvalTx.wait();
+        if (!approvalReceipt.status) {
+          console.error("Token approval failed:", approvalReceipt);
+          // Handle the error, for example, show a message to the user
+          toast.error("Token approval failed", {
+            /* ... */
+          });
+          setbtnloading((prevStatus) => {
+            const newStatus = [...prevStatus];
+            newStatus[index] = false;
+            return newStatus;
+          });
+          return; // Stop further execution
+        }
+
         if (!provider) {
           console.log("Metamask is not installed, please install!");
         }
@@ -141,7 +167,9 @@ function TempDerivative() {
         style={{ paddingTop: "3rem", paddingBottom: "2.5rem" }}
       >
         {" "}
-        <span className="derivativeTitleBox">List of Weather Derivative Contracts</span>
+        <span className="derivativeTitleBox">
+          List of Weather Derivative Contracts
+        </span>
       </div>
       <div className="row col-12 py-5 px-5 justify-content-around">
         {isPageLoading ? (
@@ -309,7 +337,9 @@ function TempDerivative() {
                 <button
                   type="button"
                   className="btn buy-derivative-btn"
-                  onClick={() => buyContract(item.contractId, key)}
+                  onClick={() =>
+                    buyContract(item.contractId, item.premiumAmount, key)
+                  }
                 >
                   {btnloading[key] ? (
                     <>
@@ -328,7 +358,16 @@ function TempDerivative() {
             </div>
           ))
         ) : (
-          <div style={{color: "white", fontSize:"1.4rem", fontWeight:"600", height:"15vh"}}>No Contracts Available</div>
+          <div
+            style={{
+              color: "white",
+              fontSize: "1.4rem",
+              fontWeight: "600",
+              height: "15vh",
+            }}
+          >
+            No Contracts Available
+          </div>
         )}
       </div>
     </div>
