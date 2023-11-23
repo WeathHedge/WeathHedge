@@ -328,7 +328,7 @@ function TempDerivative() {
             </div>
           ))
         ) : (
-          <div style={{color: "white", fontSize:"1.4rem", fontWeight:"600"}}>No Contracts Available</div>
+          <div style={{color: "white", fontSize:"1.4rem", fontWeight:"600", height:"15vh"}}>No Contracts Available</div>
         )}
       </div>
     </div>
