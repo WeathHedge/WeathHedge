@@ -22,7 +22,7 @@ function Navbar() {
         }
         const con = await derivativeInstance();
         const deployer = await con.getDeployerAddress();
-        if (deployer == address) {
+        if (deployer === address) {
           setIsOwner(true);
         }
       }
@@ -97,6 +97,15 @@ function Navbar() {
                 >
                   <span className="landing-navbar">Profile</span>
                 </NavLink>
+              </li>
+              <li className="nav-item py-2 px-lg-2">
+                <a
+                  className="nav-link px-1 p-0 d-flex align-items-center"
+                  href="https://docs.google.com/document/d/1UsqhpOZAaJdXyYdieMkL3MLGbE3Bhk8ykxrMwBKHX2k/edit?usp=sharing"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  <span className="landing-navbar">Docs</span>
+                </a>
               </li>
 
               {isOwner ? (
