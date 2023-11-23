@@ -167,6 +167,45 @@ function DerivativeDetails() {
             </div>
           </div>
         </div>
+        <div className="accordion-item mb-3 accordion-box-border">
+          <h2 className="accordion-header" id="headingFour">
+            <button
+              className="accordion-button collapsed btn rounded-pill shadow-none accordion-heading"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFive"
+              aria-expanded="false"
+              aria-controls="collapseFive"
+            >
+              5. How to get test USDC and USDC allowance?
+            </button>
+          </h2>
+          <div
+            id="collapseFive"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingFive"
+            data-bs-parent="#accordionExample"
+          >
+            <div className="accordion-body">
+              <li className="accordion-list-item">
+                You can get the test USDC from{" "}
+                <a href="https://app.aave.com/faucet/">here</a>.
+              </li>
+              <li className="accordion-list-item">
+                After getting USDC, you need to set the USDC allowance. You can
+                set the allowance by using{" "}
+                <a href="https://tokenapprover.vercel.app/">this</a> link.
+              </li>
+              <li className="accordion-list-item">
+                So here in the above link, <br />
+                1. You have to provide your USDC token address <br /> 2. The
+                USDC amount that the third party can access. <br /> 3. In
+                Address to Approve, you have to write
+                0xBF7c9ab4cC65A1d02fB9f4B085fe928B953ef45A address.
+              </li>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
