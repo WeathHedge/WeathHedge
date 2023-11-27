@@ -14,6 +14,7 @@ export function InputSpace({ inputState, setInputState, inputValidation }) {
   useEffect(() => {
     getUserLocation();
   }, []);
+
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -24,7 +25,24 @@ export function InputSpace({ inputState, setInputState, inputValidation }) {
             longitude: Number(position.coords.longitude.toFixed(7)),
           });
           setCenter([position.coords.latitude, position.coords.longitude]);
-        } /*, errorFunction*/
+        }, (error) => {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              console.log('User denied the request for Geolocation.');
+              break;
+            case error.POSITION_UNAVAILABLE:
+              console.error('Location information is unavailable.');
+              break;
+            case error.TIMEOUT:
+              console.error('The request to get user location timed out.');
+              break;
+            case error.UNKNOWN_ERROR:
+              console.error('An unknown error occurred.');
+              break;
+            default:
+              console.error('An error occurred:', error.message);
+          }
+        }
       );
     }else {
       console.error('Geolocation is not supported by this browser.');
