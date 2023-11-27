@@ -1,5 +1,4 @@
 .formList {
-  /* height: 100svh; */
   overflow: auto;
   display: flex;
   flex-direction: column;
