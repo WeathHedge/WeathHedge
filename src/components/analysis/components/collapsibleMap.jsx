@@ -17,16 +17,16 @@ export default function CollapsibleMap({
   setCenter,
 }) {
   const [zoom, setZoom] = useState(11);
-  const [mapOpen, setMapOpen] = useState(false);
+  const [mapOpen, setMapOpen] = useState(true);
 
   const mapRef = useRef(null);
 
   return (
     <div
       className={styles.mapGroup}
-      onClick={() => {
-        setMapOpen(!mapOpen);
-      }}
+      // onClick={() => {
+      //   setMapOpen(!mapOpen);
+      // }}
     >
       <button
         className={styles.mapToggleButton}
@@ -41,27 +41,31 @@ export default function CollapsibleMap({
         {mapOpen ? (
           <p>
             <FontAwesomeIcon icon={faChevronUp} color={myColors.IconBlue} />
-            Collapse Map
-          </p>
-        ) : (
-          <div>
-            <FontAwesomeIcon icon={faChevronDown} color={myColors.IconBlue} />
-            Expand Map
+            &nbsp; Collapse Map &nbsp;
             <FontAwesomeIcon
               icon={faMapLocationDot}
               color={myColors.IconBlue}
             />
-          </div>
+          </p>
+        ) : (
+          <p>
+            <FontAwesomeIcon icon={faChevronDown} color={myColors.IconBlue} />
+            &nbsp; Expand Map &nbsp;
+            <FontAwesomeIcon
+              icon={faMapLocationDot}
+              color={myColors.IconBlue}
+            />
+          </p>
         )}
       </button>
       <div
         ref={mapRef}
         className={styles.mapSpace}
-        style={mapOpen ? { height: "300px" } : { height: "40px" }}
+        style={mapOpen ? { height: "300px" } : { height: "43px" }}
       >
         <Map
           height={300}
-          defaultCenter={[50.8, 6.1]}
+          defaultCenter={inputState.centeredLocation}
           defaultZoom={11}
           center={center}
           zoom={zoom}
