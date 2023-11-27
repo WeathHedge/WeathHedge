@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   getDateHistory,
   getMonthHistory,
@@ -41,6 +41,19 @@ export function GenerateButtons({
       validInterval
     );
   };
+
+
+  useEffect(() =>{
+ runHistoryDataForLocation();
+  }, [inputState])
+
+  const runHistoryDataForLocation = async  () => {
+      if(inputState.latitude !== undefined && inputState.longitude !== undefined){
+          setLoadingState(true);
+          await getDateHistory(inputState, state, setState);
+          setLoadingState(false)
+    }
+  }
 
   return (
     <div className={styles.generateButtons}>
