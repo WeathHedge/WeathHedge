@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import CollapsibleMap from "./collapsibleMap";
 import styles from "../styles/form.module.css";
@@ -11,6 +11,9 @@ config.autoAddCss = false;
 export function InputSpace({ inputState, setInputState, inputValidation }) {
   const [center, setCenter] = useState([50.8, 6.1]);
 
+  useEffect(() => {
+    getUserLocation();
+  }, []);
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -23,9 +26,12 @@ export function InputSpace({ inputState, setInputState, inputValidation }) {
           setCenter([position.coords.latitude, position.coords.longitude]);
         } /*, errorFunction*/
       );
+    }else {
+      console.error('Geolocation is not supported by this browser.');
     }
-    /** Todo: handle errors. getCurrentPosition takes an error function as the second argument  */
   };
+
+
 
   return (
     <div className={styles.inputSpace}>
