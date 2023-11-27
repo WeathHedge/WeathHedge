@@ -11,6 +11,7 @@ function ProfilePage() {
   const [allUserContracts, setAllUserContracts] = useState([]);
   const { address } = useAccount();
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
 
   useEffect(() => {
     // Enable Bootstrap tooltips
@@ -51,14 +52,31 @@ function ProfilePage() {
     }
   };
 
-  useEffect(() => {
-    async function fetchDerivativeContracts() {
-      await allDerivativeData();
+ 
+  const fetchDerivativeContracts = async () =>{
+    if(isWalletConnected){
+      await  allDerivativeData();
       setIsPageLoading(false);
     }
-    // console.log("hello");
-    fetchDerivativeContracts();
+  }
+
+  useEffect(() => {
+    async function checkWalletConnection() {
+      const { ethereum } = window;
+      if (ethereum && ethereum.selectedAddress) {
+        setIsWalletConnected(true);
+        await fetchDerivativeContracts();
+      } else {
+        setIsWalletConnected(false);
+      }
+    }
+
+    checkWalletConnection();
   }, []);
+
+  useEffect(() => {
+    fetchDerivativeContracts();
+  }, [isWalletConnected])
 
   const withdrawAmount = async () => {
     try {
@@ -200,7 +218,11 @@ function ProfilePage() {
           <div className="d-flex justify-content-center">
             {/* <ClipLoader color="#4250ff" /> */}
           </div>
-          {isPageLoading ? (
+          {!isWalletConnected ?  (
+          <div style={{ color: 'white', fontSize: '1.4rem', fontWeight: '600', height: '15vh' }}>
+            Connect your Wallet or change the chain to see the bought Contracts
+          </div>
+        ):isPageLoading ? (
             <div>
               <ClipLoader color="#5cd200" />
             </div>

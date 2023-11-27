@@ -19,10 +19,12 @@ function TempDerivative() {
   const navigate = useNavigate();
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [btnloading, setbtnloading] = useState([]);
+  const [isWalletConnected, setIsWalletConnected] = useState(false); 
 
   const allDerivativeData = async () => {
     try {
       const { ethereum } = window;
+      console.log("Ethereum:", ethereum);
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
@@ -39,15 +41,39 @@ function TempDerivative() {
     }
   };
 
-  useEffect(() => {
-    async function fetchDerivativeContracts() {
-      await allDerivativeData();
+  // useEffect(() => {
+  //   async function fetchDerivativeContracts() {
+  //     await allDerivativeData();
+  //     setIsPageLoading(false);
+  //   }
+  //   // console.log("hello");
+  //   fetchDerivativeContracts();
+  // }, []);
+
+  const fetchDerivativeContracts = async () =>{
+    if(isWalletConnected){
+      await  allDerivativeData();
       setIsPageLoading(false);
     }
-    // console.log("hello");
-    fetchDerivativeContracts();
+  }
+
+  useEffect(() => {
+    async function checkWalletConnection() {
+      const { ethereum } = window;
+      if (ethereum && ethereum.selectedAddress) {
+        setIsWalletConnected(true);
+        await fetchDerivativeContracts();
+      } else {
+        setIsWalletConnected(false);
+      }
+    }
+
+    checkWalletConnection();
   }, []);
 
+  useEffect(() => {
+    fetchDerivativeContracts();
+  }, [isWalletConnected])
   const buyContract = async (id, amount, index) => {
     try {
       toast.info("Process is in Progress", {
@@ -172,7 +198,11 @@ function TempDerivative() {
         </span>
       </div>
       <div className="row col-12 py-5 px-5 justify-content-around">
-        {isPageLoading ? (
+        {!isWalletConnected ?  (
+          <div style={{ color: 'white', fontSize: '1.4rem', fontWeight: '600', height: '15vh' }}>
+            Connect your Wallet or change the chain to see the Contracts
+          </div>
+        ): isPageLoading ? (
           <div>
             <ClipLoader color="#5cd200" />
           </div>
@@ -358,16 +388,7 @@ function TempDerivative() {
             </div>
           ))
         ) : (
-          <div
-            style={{
-              color: "white",
-              fontSize: "1.4rem",
-              fontWeight: "600",
-              height: "15vh",
-            }}
-          >
-            No Contracts Available
-          </div>
+         <div className="text-white">No derivative contracts available</div>
         )}
       </div>
     </div>
