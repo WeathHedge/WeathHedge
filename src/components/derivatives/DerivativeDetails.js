@@ -189,7 +189,7 @@ function DerivativeDetails() {
             <div className="accordion-body">
               <li className="accordion-list-item">
                 You can get the test USDC from{" "}
-                <a href="https://app.aave.com/faucet/" target="_blank">
+                <a href="https://faucet.circle.com/" target="_blank">
                   here
                 </a>
                 .
